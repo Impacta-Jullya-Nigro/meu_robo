@@ -1,0 +1,16 @@
+# .github/workflows/automacao.yml
+
+name: Execução Diária
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Executa todos os dias às 08h UTC (5h no horário de Brasília)
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Executar robô
+        run: python bot.py
